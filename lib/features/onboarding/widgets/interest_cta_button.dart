@@ -62,6 +62,7 @@ class _InterestCtaButtonState extends State<InterestCtaButton> {
             style: TextStyle(
               color: Colors.white,
               fontSize: Sizes.size20,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
-import 'package:tiktok_clone/features/authentication/birthday_screen.dart';
-import 'package:tiktok_clone/features/onboarding/interests_screen.dart';
+import 'package:tiktok_clone/features/main_navigation/main_navigation_screen.dart';
 
 void main() {
   runApp(const TiktokApp());
@@ -26,12 +25,12 @@ class TiktokApp extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        bottomAppBarTheme: BottomAppBarTheme(
-          color: Colors.grey.shade50,
+        bottomAppBarTheme: const BottomAppBarTheme(
+          color: Colors.white,
         ),
       ),
       // home: const SignUpScreen(),
-      home: const InterestsScreen(),
+      home: const MainNavigationScreen(),
     );
   }
 }
