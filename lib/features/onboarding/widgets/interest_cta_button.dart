@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/onboarding/tutorial_screen.dart';
 
 class InterestCtaButton extends StatefulWidget {
   const InterestCtaButton({
@@ -31,9 +32,18 @@ class _InterestCtaButtonState extends State<InterestCtaButton> {
     });
   }
 
+  void _onNextTap() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const TutorialScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: _onNextTap,
       onTapDown: _onTapDown,
       onTapUp: _onTapUp,
       onTapCancel: _onTapCancel,
