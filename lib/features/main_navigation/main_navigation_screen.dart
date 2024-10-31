@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
+import 'package:tiktok_clone/features/discover/discover_screen.dart';
+import 'package:tiktok_clone/features/inbox/inbox_screen.dart';
 import 'package:tiktok_clone/features/main_navigation/stateful_screen.dart';
 import 'package:tiktok_clone/features/main_navigation/widgets/nav_tab.dart';
 import 'package:tiktok_clone/features/main_navigation/widgets/post_video_button.dart';
@@ -14,7 +16,7 @@ class MainNavigationScreen extends StatefulWidget {
 }
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 3;
 
   void _onTap(int index) {
     setState(() {
@@ -46,11 +48,11 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           ),
           Offstage(
             offstage: _selectedIndex != 1,
-            child: const StfScreen(),
+            child: const DiscoverScreen(),
           ),
           Offstage(
             offstage: _selectedIndex != 3,
-            child: const StfScreen(),
+            child: const InboxScreen(),
           ),
           Offstage(
             offstage: _selectedIndex != 4,
@@ -59,15 +61,24 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         ],
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.black,
+        elevation: 0.5, // 경계선의 그림자 높이
+        shadowColor: Colors.black, // 그림자 색상
+        surfaceTintColor: Colors.transparent, // Material 3 틴트 색상 제거
+        padding: const EdgeInsets.symmetric(
+          vertical: 10,
+          horizontal: 0,
+        ),
+        color: _selectedIndex == 0 ? Colors.black : Colors.white,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             NavTab(
               text: 'Home',
               icon: FontAwesomeIcons.house,
               selectedIcon: FontAwesomeIcons.house,
               isSelected: _selectedIndex == 0,
+              selectedIndex: _selectedIndex,
               onTap: () => _onTap(0),
             ),
             NavTab(
@@ -75,16 +86,21 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
               icon: FontAwesomeIcons.compass,
               selectedIcon: FontAwesomeIcons.solidCompass,
               isSelected: _selectedIndex == 1,
+              selectedIndex: _selectedIndex,
               onTap: () => _onTap(1),
             ),
-            Gaps.h24,
-            PostVideoButton(onTap: _onPostVideoButtonTap),
-            Gaps.h24,
+            Gaps.h32,
+            PostVideoButton(
+              onTap: _onPostVideoButtonTap,
+              inverted: _selectedIndex != 0,
+            ),
+            Gaps.h32,
             NavTab(
               text: 'Inbox',
               icon: FontAwesomeIcons.message,
               selectedIcon: FontAwesomeIcons.solidMessage,
               isSelected: _selectedIndex == 3,
+              selectedIndex: _selectedIndex,
               onTap: () => _onTap(3),
             ),
             NavTab(
@@ -92,6 +108,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
               icon: FontAwesomeIcons.user,
               selectedIcon: FontAwesomeIcons.solidUser,
               isSelected: _selectedIndex == 4,
+              selectedIndex: _selectedIndex,
               onTap: () => _onTap(4),
             ),
           ],
