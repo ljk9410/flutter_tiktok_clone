@@ -54,9 +54,9 @@ class InboxScreen extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-          Container(
+          Divider(
+            color: Colors.grey.shade200.withOpacity(0.5),
             height: Sizes.size1,
-            color: Colors.grey.shade100,
           ),
           ListTile(
             leading: Container(

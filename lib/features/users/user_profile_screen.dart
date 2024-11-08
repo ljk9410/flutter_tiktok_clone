@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/settings/settings_screen.dart';
 import 'package:tiktok_clone/features/users/widgets/persistent_tab_bar.dart';
 import 'package:tiktok_clone/features/users/widgets/property_card.dart';
 
@@ -10,6 +11,14 @@ class UserProfileScreen extends StatefulWidget {
 
   @override
   State<UserProfileScreen> createState() => _UserProfileScreenState();
+}
+
+void _onPressSettings(BuildContext context) {
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => const SettingsScreen(),
+    ),
+  );
 }
 
 class _UserProfileScreenState extends State<UserProfileScreen> {
@@ -25,10 +34,10 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 title: const Text('User'),
                 actions: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () => _onPressSettings(context),
                     icon: const FaIcon(
                       FontAwesomeIcons.gear,
-                      size: Sizes.size20,
+                      size: Sizes.size24,
                     ),
                   ),
                 ],
